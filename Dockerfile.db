@@ -1,0 +1,9 @@
+# Use a specific version of the MySQL image, specifying the platform
+FROM --platform=linux/amd64 mysql:5.7
+
+ENV MYSQL_DATABASE=db_bunlong \
+    MYSQL_ROOT_PASSWORD=bunlong \
+    MYSQL_USER=bunlong \
+    MYSQL_PASSWORD=bunlong
+
+COPY ./book_exchange_back_front.sql /docker-entrypoint-initdb.d/book_exchange_back_front.sql

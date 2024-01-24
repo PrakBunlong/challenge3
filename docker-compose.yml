@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+  app_laravel:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: "laravel_container"
+    ports:
+      - 8088:80
+    volumes:
+      - ./:/var/www/html
+
+  db_mysql:
+    build:
+      context: .
+      dockerfile: Dockerfile.db # Use the new Dockerfile for MySQL
+    restart: always
+    ports:
+      - "3309:3306"
+    environment:
+      MYSQL_DATABASE: db_bunlong
+      MYSQL_ROOT_PASSWORD: bunlong
+      MYSQL_USER: bunlong
+      MYSQL_PASSWORD: bunlong
+    volumes:
+      - D:\Documents\Paragon\Year 3 Semester 1\Cloud\girl challenge\ApiMission5\book_exchange_back_front.sql:/docker-entrypoint-initdb.d/book_exchange_back_front.sql
